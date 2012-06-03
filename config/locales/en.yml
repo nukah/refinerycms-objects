@@ -1,0 +1,37 @@
+en:
+  refinery:
+    plugins:
+      objects:
+        title: Objects
+    objects:
+      admin:
+        objects:
+          actions:
+            create_new: Add New Object
+            reorder: Reorder Objects
+            reorder_done: Done Reordering Objects
+          records:
+            title: Objects
+            sorry_no_results: Sorry! There are no results found.
+            no_items_yet: There are no Objects yet. Click "Add New Object" to add your first object.
+          object:
+            view_live_html: View this object live <br/><em>(opens in a new window)</em>
+            edit: Edit this object
+            delete: Remove this object forever
+      objects:
+        show:
+          other: Other Objects
+  activerecord:
+    attributes:
+      'refinery/objects/object':
+        title: Title
+        address: Address
+        distance: Distance
+        space: Space
+        plan: Plan
+        floor: Floor
+        parking: Parking
+        parkingcost: Parkingcost
+        rentcost: Rentcost
+        description: Description
+        photo: Photo

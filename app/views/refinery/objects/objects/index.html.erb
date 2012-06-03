@@ -1,0 +1,10 @@
+<h1>Доступные объекты</h1>
+<ul class="gallery">
+  <% @objects.each do |object| %>
+    <li>
+	<div class="sep1"></div>
+      <%= link_to image_tag(object.photo.thumbnail('150x100').url), refinery.objects_object_path(object), :class => 'thumb linked_box' %>
+	  <span><%= object.title %></span>
+    </li>
+  <% end %>
+</ul>

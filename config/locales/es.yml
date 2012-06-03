@@ -1,0 +1,38 @@
+es:
+  refinery:
+    plugins:
+      objects:
+        title: Objects
+#        article: masculino/femenino
+    objects:
+      admin:
+        objects:
+          actions:
+            create_new: Crear nuevo object
+            reorder: Reordenar objects
+            reorder_done: Reordenación de objects completada
+          records:
+            title: Objects
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay objects todavía. Pulsa en "Crear nuevo Object" para crear tu primer object.
+          object:
+            view_live_html: Ver este object como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este object
+            delete: Borrar este object para siempre
+      objects:
+        show:
+          other: Otros objects
+  activerecord:
+    attributes:
+      'refinery/objects/object':
+        title: Title
+        address: Address
+        distance: Distance
+        space: Space
+        plan: Plan
+        floor: Floor
+        parking: Parking
+        parkingcost: Parkingcost
+        rentcost: Rentcost
+        description: Description
+        photo: Photo

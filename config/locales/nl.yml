@@ -1,0 +1,37 @@
+nl:
+  refinery:
+    plugins:
+      objects:
+        title: Objects
+    objects:
+      admin:
+        objects:
+          actions:
+            create_new: Maak een nieuwe Object
+            reorder: Wijzig de volgorde van de Objects
+            reorder_done: Klaar met het wijzingen van de volgorde van de Objects
+          records:
+            title: Objects
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen Objects. Druk op 'Maak een nieuwe Object' om de eerste aan te maken.
+          object:
+            view_live_html: Bekijk deze object op de website <br/><em>(opent een nieuw venster)</em>
+            edit: Bewerk deze object
+            delete: Verwijder deze object voor eeuwig
+      objects:
+        show:
+          other: Andere Objects
+  activerecord:
+    attributes:
+      'refinery/objects/object':
+        title: Title
+        address: Address
+        distance: Distance
+        space: Space
+        plan: Plan
+        floor: Floor
+        parking: Parking
+        parkingcost: Parkingcost
+        rentcost: Rentcost
+        description: Description
+        photo: Photo

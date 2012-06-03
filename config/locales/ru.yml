@@ -1,0 +1,49 @@
+ru:
+  objects:
+      title: Название
+      address: Адрес
+      distance: Удалённость от метро
+      space: Площадь
+      plan: Планировка
+      floor: Этаж
+      parking: Паркинг
+      parkingcost: Стоимость парковки
+      rentcost: Стоимость аренды
+      description: Описание
+      photo: Фотография
+  refinery:
+    plugins:
+      objects:
+        title: Объекты
+    objects:
+      admin:
+        objects:
+          actions:
+            create_new: Добавить новый объект
+            reorder: Перераспределить объекты
+            reorder_done: Закончить перераспределение
+          records:
+            title: Объекты
+            sorry_no_results: Извините, ничего не найдено
+            no_items_yet: Никаких объектов пока не добавлено. Нажмите Добавить чтобы создать новый объект.
+          object:
+            view_live_html: Просмотреть <br/><em>(откроется в новом окне)</em>
+            edit: Редактировать объект
+            delete: Удалить объект
+      objects:
+        show:
+          other: Другие
+  activerecord:
+    attributes:
+      'refinery/objects/object':
+        title: Название
+        address: Адрес
+        distance: Удалённость от метро
+        space: Площадь
+        plan: Планировка
+        floor: Этаж
+        parking: Паркинг
+        parkingcost: Стоимость парковки
+        rentcost: Стоимость аренды
+        description: Описание
+        photo: Фотография

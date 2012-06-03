@@ -1,0 +1,112 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'admin_objects' %>
+<% end %>
+<%= javascript_tag :defer => 'defer' do %>
+$(document).ready(function() {
+	$('#parking_cost_field').hide();
+	$('#object_parking').click(function() {
+		$('#parking_cost_field').fadeToggle('fast');
+	});
+});
+<% end %>
+<%= form_for [refinery, :objects_admin, @object] do |f| -%>
+  <%= render '/refinery/admin/error_messages',
+              :object => @object,
+              :include_object_name => true %>
+
+  
+  <div class='field'>
+    <%= f.label :title -%>
+    <%= f.text_field :title, :class => 'larger widest'  -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :photo -%>
+    <%= render '/refinery/admin/image_picker',
+               :f => f,
+               :field => :photo_id,
+               :image => @object.photo,
+               :toggle_image_display => false %>
+  </div>
+
+  <div class='field'>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <% [:description].each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
+            <%= link_to t("#{part}", :scope => "activerecord.attributes.refinery/objects/object", :default => part.to_s.titleize), "##{part}" %>
+          </li>
+        <% end %>
+      </ul>
+      <div id='page_part_editors'>
+        <% [:description].each do |part| %>
+          <div class='page_part' id='<%= part %>'>
+            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :address -%>
+    <%= f.text_field :address, :size => 55  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :distance -%>
+    <%= f.text_field :distance  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :space -%>
+    <%= f.text_field :space  -%> ( кв. метров )
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :plan -%>
+    <%= f.text_field :plan  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :floor -%>
+    <%= f.text_field :floor  -%>
+
+  </div>
+  
+  <div class='field' id='parking_field'>
+    <%= f.label :parking -%>
+    <%= f.check_box :parking, :checked => @object[:parking]  -%>
+
+  </div>
+  
+  <div class='field' id='parking_cost_field'>
+    <%= f.label :parkingcost -%>
+    <%= f.number_field :parkingcost  -%>
+
+  </div>
+  
+  <div class='field'>
+    <%= f.label :rentcost -%>
+    <%= f.number_field :rentcost  -%> ( за кв. метр в год )
+  </div>
+  
+
+  
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => false,
+             :delete_title => t('delete', :scope => 'refinery.objects.admin.objects.object'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @object.title) %>
+<% end -%>
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+    });
+  </script>
+<% end %>

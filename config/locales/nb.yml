@@ -1,0 +1,37 @@
+nb:
+  refinery:
+    plugins:
+      objects:
+        title: Objects
+    objects:
+      admin:
+        objects:
+          actions:
+            create_new: Lag en ny Object
+            reorder: Endre rekkefølgen på Objects
+            reorder_done: Ferdig å endre rekkefølgen Objects
+          records:
+            title: Objects
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Objects enda. Klikk på "Lag en ny Object" for å legge til din første object.
+          object:
+            view_live_html: Vis hvordan denne object ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne object
+            delete: Fjern denne object permanent
+      objects:
+        show:
+          other: Andre Objects
+  activerecord:
+    attributes:
+      'refinery/objects/object':
+        title: Title
+        address: Address
+        distance: Distance
+        space: Space
+        plan: Plan
+        floor: Floor
+        parking: Parking
+        parkingcost: Parkingcost
+        rentcost: Rentcost
+        description: Description
+        photo: Photo
