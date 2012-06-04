@@ -36,12 +36,14 @@ $(document).ready(function() {
 		<% end %>
 	<% end %>
 	</dl>
+	<% if @object.description.present? %>
 	<div class="deux">
 		<h1>
 			Описание:
 		</h1>
 		<%= raw @object.description %>
 	</div>
+	<% end %>
 </div>
 <div class="object_right">
 	<h1>

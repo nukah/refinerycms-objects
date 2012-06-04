@@ -21,7 +21,7 @@ module Refinery
 
 
       def parking
-        self[:parking] ? 'yes' : 'no'
+        self[:parking] ? I18n.t('yes') : I18n.t('no')
       end
     end
   end
