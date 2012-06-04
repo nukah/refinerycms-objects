@@ -1,38 +1,67 @@
 <%= content_for :before_javascript_libraries do %>
-  <%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU') %>
+	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU') %>
 <% end %>
 <%= javascript_tag do %>
-  ymaps.ready(init);
-  function init() {
-            ymaps.geocode("<%= @object.address %>", { results: 1 }).then(function (res) {
-                var objPlace = res.geoObjects.get(0);
-                var myMap = new ymaps.Map("map", {
-                    center: objPlace.geometry.getCoordinates(),
-                    zoom: 15
-                });
-                var placeMark = new ymaps.Placemark(objPlace.geometry.getCoordinates());
-                myMap.geoObjects.add(placeMark);
-            });
-        }
+ymaps.ready(init); function init() { ymaps.geocode("<%= @object.address %>", { results: 1 }).then(function (res) { var objPlace = res.geoObjects.get(0); var myMap = new ymaps.Map("map", { center: objPlace.geometry.getCoordinates(), zoom: 15 }); var placeMark = new ymaps.Placemark(objPlace.geometry.getCoordinates()); myMap.geoObjects.add(placeMark); }); } 
+$(document).ready(function() {	
+	$("a.image_link").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false
+	});
+});
 <% end %>
 <div class="object_left">
-  <h1><%= @object.title %></h1>
-  <dl>
-    <% @object.fields.each do |field| %>
-    	<% if field and @object.send(field).present? %>
-    	<div class="object_wrapper"><dt class='object'><%= t('objects.'+ field)%>:</dt> <dd class="object"><%=raw @object.send(field) %></dd></div>
-    	<% end %>
-    <% end %>
-  </dl>
-  <div class="deux"><h1>Описание:</h1><%= raw @object.description %></div>
+	<h1>
+		<%= @object.title %>
+	</h1>
+	<dl>
+	<% @object.fields.each do |field| %>
+		<% if field and @object.send(field).present? %>
+		<dd>
+			<div class="object_wrapper">
+				<dl>
+					<dt class='object'>
+						<%= t('objects.'+ field)%>:
+					</dt>
+					<dd class="object">
+						<%=raw @object.send(field) %>
+					</dd>
+				</dl>
+			</div>
+		<% end %>
+	<% end %>
+	</dl>
+	<div class="deux">
+		<h1>
+			Описание:
+		</h1>
+		<%= raw @object.description %>
+	</div>
 </div>
 <div class="object_right">
-	<h1>Стоимость аренды</h1>
-		<div class="rentcost"><span><%= number_to_currency(@object.rentcost, :format => '%n', :precision => 0) %></span> руб. за кв.м. в год</div>
-    <h1>Месторасположение</h1>
-  <div id="map"></div>
-    <h1>Фотографии</h1>
-    <p>
-      <%= link_to image_fu(@object.photo, '300x300'), '1' %>
-    </p>
+	<h1>
+		Стоимость аренды
+	</h1>
+	<div class="rentcost">
+		<span><%= number_to_currency(@object.rentcost, :format => '%n', :precision => 0) %></span> руб. за кв.м. в год
+	</div>
+	<h1>
+		Месторасположение
+	</h1>
+	<div id="map"></div>
+	<h1>
+		Фотографии
+	</h1>
+	<p>
+		<%= link_to image_fu(@object.photo, '300x300'), @object.photo.thumbnail("900x600").url, :class => 'image_link' %>
+	</p>
+	<ul id='gallery'>
+		<% @object.images.each do |i| %>
+		<li>
+			<%= link_to image_tag(i.thumbnail("300x300#c").url), i.thumbnail("900x600").url, :class => 'image_link' %>
+		</li><% end %>
+	</ul>
 </div>
