@@ -7,9 +7,10 @@ module Refinery
 
       acts_as_indexed :fields => [:title, :address, :distance, :plan, :description]
 
-      validates :title, :presence => true, :uniqueness => true
+      validates :title, :rentcost, :presence => true, :uniqueness => true
 
       belongs_to :photo, :class_name => '::Refinery::Image'
+      has_many :pictures, :dependent => :destroy
       
       public
       def fields

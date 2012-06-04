@@ -13,9 +13,9 @@ platforms :jruby do
 end
 
 platforms :ruby do
+  group :development, :test do
   gem 'sqlite3'
-  gem 'mysql2'
-  gem 'pg'
+end
 end
 
 group :development, :test do
