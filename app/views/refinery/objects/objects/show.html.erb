@@ -5,11 +5,13 @@
 ymaps.ready(init); function init() { ymaps.geocode("<%= @object.address %>", { results: 1 }).then(function (res) { var objPlace = res.geoObjects.get(0); var myMap = new ymaps.Map("map", { center: objPlace.geometry.getCoordinates(), zoom: 15 }); var placeMark = new ymaps.Placemark(objPlace.geometry.getCoordinates()); myMap.geoObjects.add(placeMark); }); } 
 $(document).ready(function() {	
 	$("a.image_link").fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
+		'transitionIn'	:	'fade',
+		'transitionOut'	:	'none',
+		'speedIn'		:	300, 
 		'speedOut'		:	200, 
-		'overlayShow'	:	false
+		'overlayShow'	:	true,
+		'hideOnContentClick' : true,
+		
 	});
 });
 <% end %>
