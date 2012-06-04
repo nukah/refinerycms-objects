@@ -1,4 +1,6 @@
 ru:
+    yes: присутствует
+    no: отсутствует
   objects:
       title: Название
       address: Адрес
