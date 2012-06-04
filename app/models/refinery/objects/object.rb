@@ -11,7 +11,8 @@ module Refinery
       validates :rentcost, :address, :presence => true
 
       belongs_to :photo, :class_name => '::Refinery::Image'
-      has_many :pictures, :dependent => :destroy
+      
+      has_many_page_images
       
       public
       def fields
