@@ -8,7 +8,7 @@ module Refinery
       acts_as_indexed :fields => [:title, :address, :distance, :plan, :description]
 
       validates :title, :presence => true, :uniqueness => true
-      validates :rentcost, :address, :presence => true
+      validates :rentcost, :address, :photo_id :presence => true
 
       belongs_to :photo, :class_name => '::Refinery::Image'
       
@@ -16,7 +16,7 @@ module Refinery
       
       public
       def fields
-        return self.attributes.keys.reject! { |f| ['title', 'description', 'rentcost', 'id','photo_id','position', 'created_at', 'updated_at'].include?(f) }
+        return self.attributes.keys.reject! { |f| ['title', 'parkingcost', 'description', 'rentcost', 'id','photo_id','position', 'created_at', 'updated_at'].include?(f) }
       end
 
 
@@ -24,9 +24,6 @@ module Refinery
         self[:parking] ? ::I18n.t('yes') : ::I18n.t('no')
       end
       
-      def rentcost
-        number_to_currency(self[:rentcost], :format => '%n', :precision => 0).insert(-1, ::I18n.t('nds_inc'))
-      end
     end
   end
 end
