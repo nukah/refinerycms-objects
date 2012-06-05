@@ -1,6 +1,7 @@
 ru:
   yes: присутствует
   no: отсутствует
+  nds_inc: '(включая НДС)'
   objects:
       title: Название
       address: Адрес

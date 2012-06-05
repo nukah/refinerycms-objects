@@ -25,7 +25,7 @@ module Refinery
       end
       
       def rentcost
-        number_to_currency(self[:rentcost], :format => '%n', :precision => 0).insert(-1, ' (без НДС)')
+        number_to_currency(self[:rentcost], :format => '%n', :precision => 0).insert(-1, ::I18n.t('nds_inc'))
       end
     end
   end
