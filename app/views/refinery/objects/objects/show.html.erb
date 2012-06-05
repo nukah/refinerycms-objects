@@ -55,7 +55,7 @@ $(document).ready(function() {
 					<%= t('objects.space')%>
 				</dt>
 				<dd class="object">
-					<%= raw @object.space %>
+					<%= raw @object.space %> кв. м.
 				</dd>
 			</div>
 			<% end %>
@@ -75,7 +75,7 @@ $(document).ready(function() {
 					<%= t('objects.parking')%>
 				</dt>
 				<dd class="object">
-					<%= number_to_currency(@object.parkingcost, :format => '%n', :precision => 0) %> р. (без НДС)
+					<%= number_to_currency(@object.parkingcost, :format => '%n', :precision => 0) %> р. в месяц (без НДС)
 				</dd>
 			</div>
 			<% end %>
