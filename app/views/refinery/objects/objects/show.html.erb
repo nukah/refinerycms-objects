@@ -50,7 +50,7 @@ $(document).ready(function() {
 		Стоимость аренды
 	</h1>
 	<div class="rentcost">
-		<span><%= number_to_currency(@object.rentcost, :format => '%n', :precision => 0) %></span> руб. за кв.м. в год
+		<span><%= number_to_currency(@object.rentcost, :format => '%n', :precision => 0) %></span> руб. за кв.м. в год (включая НДС)
 	</div>
 	<h1>
 		Месторасположение

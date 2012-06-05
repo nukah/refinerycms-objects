@@ -23,6 +23,10 @@ module Refinery
       def parking
         self[:parking] ? ::I18n.t('yes') : ::I18n.t('no')
       end
+      
+      def rentcost
+        number_to_currency(self[:rentcost], :format => '%n', :precision => 0).insert(-1, ' (без НДС)')
+      end
     end
   end
 end
