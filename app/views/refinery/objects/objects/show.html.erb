@@ -22,44 +22,54 @@ $(document).ready(function() {
 	<div class="object_wrapper">
 		<dl>
 			<% if @object.distance.present? %>
-			<dt class="object">
-				<%= t('objects.distance')%>
-			</dt>
-			<dd class="object">
-				<%= raw @object.distance %>
-			</dd>
+			<div>
+				<dt class="object">
+					<%= t('objects.distance')%>
+				</dt>
+				<dd class="object">
+					<%= raw @object.distance %>
+				</dd>
+			</div>
 			<% end %>
 			<% if @object.plan.present? %>
-			<dt class="object">
-				<%= t('objects.plan')%>
-			</dt>
-			<dd class="object">
-				<%= raw @object.plan %>
-			</dd>
+			<div>
+				<dt class="object">
+					<%= t('objects.plan')%>
+				</dt>
+				<dd class="object">
+					<%= raw @object.plan %>
+				</dd>
+			</div>
 			<% end %>
 			<% if @object.space.present? %>
-			<dt class="object">
-				<%= t('objects.space')%>
-			</dt>
-			<dd class="object">
-				<%= raw @object.space %>
-			</dd>
+			<div>
+				<dt class="object">
+					<%= t('objects.space')%>
+				</dt>
+				<dd class="object">
+					<%= raw @object.space %>
+				</dd>
+			</div>
 			<% end %>
 			<% if @object.floor.present? %>
-			<dt class="object">
-				<%= t('objects.floor')%>
-			</dt>
-			<dd class="object">
-				<%= raw @object.floor %>
-			</dd>
+			<div>
+				<dt class="object">
+					<%= t('objects.floor')%>
+				</dt>
+				<dd class="object">
+					<%= raw @object.floor %>
+				</dd>
+			</div>
 			<% end %>
 			<% if @object.parking %>
-			<dt class="object">
-				<%= t('objects.parking')%>
-			</dt>
-			<dd class="object">
-				<%= number_to_currency(@object.parkingcost, :format => '%n', :precision => 0) %> (без НДС)
-			</dd>
+			<div>
+				<dt class="object">
+					<%= t('objects.parking')%>
+				</dt>
+				<dd class="object">
+					<%= number_to_currency(@object.parkingcost, :format => '%n', :precision => 0) %> (без НДС)
+				</dd>
+			</div>
 			<% end %>
 		</dl>
 	</div>
