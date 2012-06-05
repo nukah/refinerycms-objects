@@ -21,6 +21,14 @@ $(document).ready(function() {
 	</h1>
 	<div class="object_wrapper">
 		<dl>
+			<div>
+				<dt class="object">
+					<%= t('objects.address') %>
+				</dt>
+				<dd class="object">
+					<%= raw @object.address %>
+				</dd>
+			</div>
 			<% if @object.distance.present? %>
 			<div>
 				<dt class="object">
@@ -67,7 +75,7 @@ $(document).ready(function() {
 					<%= t('objects.parking')%>
 				</dt>
 				<dd class="object">
-					<%= number_to_currency(@object.parkingcost, :format => '%n', :precision => 0) %> (без НДС)
+					<%= number_to_currency(@object.parkingcost, :format => '%n', :precision => 0) %> р. (без НДС)
 				</dd>
 			</div>
 			<% end %>
