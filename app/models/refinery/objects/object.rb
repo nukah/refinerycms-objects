@@ -8,18 +8,14 @@ module Refinery
       acts_as_indexed :fields => [:title, :address, :distance, :plan, :description]
 
       validates :title, :presence => true, :uniqueness => true
-      validates :rentcost, :address, :photo_id :presence => true
+      validates :rentcost, :address, :photo_id, :presence => true
 
       belongs_to :photo, :class_name => '::Refinery::Image'
       
       has_many_page_images
       
       public
-      def fields
-        return self.attributes.keys.reject! { |f| ['title', 'parkingcost', 'description', 'rentcost', 'id','photo_id','position', 'created_at', 'updated_at'].include?(f) }
-      end
-
-
+      
       def parking
         self[:parking] ? ::I18n.t('yes') : ::I18n.t('no')
       end
