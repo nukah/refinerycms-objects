@@ -2,6 +2,8 @@ ru:
   yes: присутствует
   no: отсутствует
   nds_inc: '(включая НДС)'
+  enter_email: 'Введите ваш почтовый адрес'
+  submit_email: 'Подписаться'
   objects:
       title: Название
       address: Адрес

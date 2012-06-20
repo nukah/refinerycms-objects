@@ -2,6 +2,7 @@ module Refinery
   module Objects
     class Object < Refinery::Core::BaseModel
       self.table_name = 'refinery_objects'
+      after_create { |record| Delayed::Job.enqueue NewObjectJob.new(Subscriber.find(:all), record) }
 
       attr_accessible :title, :position, :address, :distance, :plan, :description, :space, :plan, :floor, :parking, :parkingcost, :rentcost, :photo_id
 

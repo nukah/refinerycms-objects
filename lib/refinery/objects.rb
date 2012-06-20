@@ -5,6 +5,7 @@ module Refinery
 
   module Objects
     require 'refinery/objects/engine'
+    require 'refinery/objects/jobs'
     autoload :Tab, 'refinery/objects/tabs'
 
     class << self
