@@ -1,5 +1,5 @@
 <%= content_for :before_javascript_libraries do %>
-	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU') %>
+	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU') %>
 <% end %>
 <%= javascript_tag do %>
 ymaps.ready(init); 
@@ -7,14 +7,15 @@ function init() {
 	var object = new ymaps.GeoObject({
         geometry: {
             type: "Point",
-            coordinates: [ <%= @object.location %>]
-       }
+            coordinates: [<%= @object.location %>]
+       },
        	properties: {
        		opacity: 0.5,
        }
     });
 	var map = new ymaps.Map("map", {
-		center: object.geometry.getCoordinates(), zoom: 13
+		center: object.geometry.getCoordinates(), 
+		zoom: 13
 	});
 	map.geoObjects.add(object); 
 } 
