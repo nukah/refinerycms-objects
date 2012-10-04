@@ -2,23 +2,22 @@
 	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU') %>
 <% end %>
 <%= javascript_tag do %>
-ymaps.ready(init); 
-function init() {
+ymaps.ready(function init() {
 	var object = new ymaps.GeoObject({
         geometry: {
             type: "Point",
             coordinates: [<%= @object.location %>]
        },
        	properties: {
-       		opacity: 0.5,
+       		opacity: 0.5
        }
     });
 	var map = new ymaps.Map("map", {
-		center: object.geometry.getCoordinates(), 
+		center: [<%= @object.location %>], 
 		zoom: 13
 	});
 	map.geoObjects.add(object); 
-} 
+});  
 $(document).ready(function() {	
 	$("a.image_link").fancybox({
 		'transitionIn'	:	'fade',
