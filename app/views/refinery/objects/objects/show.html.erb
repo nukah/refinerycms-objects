@@ -4,7 +4,7 @@
 <%= javascript_tag do %>
 ymaps.ready(init); 
 function init() { 
-	ymaps.geocode("<%= @object.position %>", { results: 1 }).then(function (res) { 
+	ymaps.geocode("<%= @object.location %>", { results: 1 }).then(function (res) { 
 		var objPlace = res.geoObjects.get(0); 
 		var myMap = new ymaps.Map("map", { 
 			center: objPlace.geometry.getCoordinates(), zoom: 15 
