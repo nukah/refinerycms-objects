@@ -3,15 +3,20 @@
 <% end %>
 <%= javascript_tag do %>
 ymaps.ready(init); 
-function init() { 
-	ymaps.geocode("<%= @object.location %>", { results: 1 }).then(function (res) { 
-		var objPlace = res.geoObjects.get(0); 
-		var myMap = new ymaps.Map("map", { 
-			center: objPlace.geometry.getCoordinates(), zoom: 15 
-		}); 
-		var placeMark = new ymaps.Placemark(objPlace.geometry.getCoordinates()); 
-		myMap.geoObjects.add(placeMark); 
-	}); 
+function init() {
+	var object = new ymaps.GeoObject({
+        geometry: {
+            type: "Point",
+            coordinates: [ <%= @object.location %>]
+       }
+       	properties: {
+       		opacity: 0.5,
+       }
+    });
+	var map = new ymaps.Map("map", {
+		center: object.geometry.getCoordinates(), zoom: 13
+	});
+	map.geoObjects.add(object); 
 } 
 $(document).ready(function() {	
 	$("a.image_link").fancybox({
