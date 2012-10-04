@@ -13,7 +13,7 @@ module Refinery
 		  			xml = Nokogiri::XML(response.body)
 		  			position = xml.xpath('//provider:pos', 'provider' => 'http://www.opengis.net/gml').text
 		  		end
-		  		position
+		  		position.gsub(" ",",")
 			end
 		end
 	end
