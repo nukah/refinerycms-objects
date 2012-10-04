@@ -1,8 +1,18 @@
 <%= content_for :before_javascript_libraries do %>
-	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU') %>
+	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU') %>
 <% end %>
 <%= javascript_tag do %>
-ymaps.ready(init); function init() { ymaps.geocode("<%= @object.address %>", { results: 1 }).then(function (res) { var objPlace = res.geoObjects.get(0); var myMap = new ymaps.Map("map", { center: objPlace.geometry.getCoordinates(), zoom: 15 }); var placeMark = new ymaps.Placemark(objPlace.geometry.getCoordinates()); myMap.geoObjects.add(placeMark); }); } 
+ymaps.ready(init); 
+function init() { 
+	ymaps.geocode("<%= @object.position %>", { results: 1 }).then(function (res) { 
+		var objPlace = res.geoObjects.get(0); 
+		var myMap = new ymaps.Map("map", { 
+			center: objPlace.geometry.getCoordinates(), zoom: 15 
+		}); 
+		var placeMark = new ymaps.Placemark(objPlace.geometry.getCoordinates()); 
+		myMap.geoObjects.add(placeMark); 
+	}); 
+} 
 $(document).ready(function() {	
 	$("a.image_link").fancybox({
 		'transitionIn'	:	'fade',

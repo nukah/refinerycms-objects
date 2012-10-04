@@ -3,8 +3,9 @@ module Refinery
     class Object < Refinery::Core::BaseModel
       self.table_name = 'refinery_objects'
       after_create { |record| Delayed::Job.enqueue NewObjectJob.new(Subscriber.find(:all), record) }
+      before_create { |record| record.location = Refinery::Objects::Util.provide_position(record.address) }
 
-      attr_accessible :title, :position, :address, :distance, :plan, :description, :space, :plan, :floor, :parking, :parkingcost, :rentcost, :photo_id
+      attr_accessible :title, :position, :address, :location, :distance, :plan, :description, :space, :plan, :floor, :parking, :parkingcost, :rentcost, :photo_id
 
       acts_as_indexed :fields => [:title, :address, :distance, :plan, :description]
 

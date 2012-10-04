@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = 'refinerycms-objects'
   s.authors           = 'mighty'
-  s.version           = '1.3'
+  s.version           = '1.4'
   s.description       = 'Ruby on Rails Objects extension for Refinery CMS'
   s.date              = '2012-06-20'
   s.summary           = 'Objects extension for Refinery CMS'
@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency             'refinerycms-core',    '~> 2.0.4'
   s.add_dependency             'delayed_job_active_record'
   s.add_dependency             'daemons'
+  s.add_dependency             'nokogiri'
 
   # Development dependencies (usually used for testing)
   s.add_development_dependency 'refinerycms-testing', '~> 2.0.4'
