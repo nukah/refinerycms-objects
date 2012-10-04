@@ -1,23 +1,7 @@
 <%= content_for :before_javascript_libraries do %>
-	<%= javascript_include_tag('http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU') %>
+	<%= javascript_include_tag('http://maps.googleapis.com/maps/api/js?key=AIzaSyAUowQX3jpTvPs9Nit0I9sDwlOlSLnstIU&sensor=false') %>
 <% end %>
 <%= javascript_tag do %>
-ymaps.ready(function init() {
-	var object = new ymaps.GeoObject({
-        geometry: {
-            type: "Point",
-            coordinates: [<%= @object.location %>]
-       },
-       	properties: {
-       		opacity: 0.5
-       }
-    });
-	var map = new ymaps.Map("map", {
-		center: [<%= @object.location %>], 
-		zoom: 13
-	});
-	map.geoObjects.add(object); 
-});  
 $(document).ready(function() {	
 	$("a.image_link").fancybox({
 		'transitionIn'	:	'fade',
@@ -28,6 +12,25 @@ $(document).ready(function() {
 		'hideOnContentClick' : true,
 		
 	});
+	function initialize() {
+	var mapOptions = {
+	    center: new google.maps.LatLng(<%= @object.location %>),
+	    zoom: 16,
+	    minZoom: 13,
+	    maxZoom: 17,
+	    panControl: false,
+	    streetViewControl: false,
+	    mapTypeControl: false,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var objectOptions = {
+	    animation: google.maps.Animation.DROP,
+	    position: new google.maps.LatLng(<%= @object.location %>),
+	    title: 'Test'
+	}
+	var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+	var object = new google.maps.Marker(objectOptions).setMap(map);
+} 
 });
 <% end %>
 <div class="object_left">
