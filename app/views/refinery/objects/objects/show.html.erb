@@ -1,5 +1,5 @@
 <%= content_for :before_javascript_libraries do %>
-	<%= javascript_include_tag('http://maps.googleapis.com/maps/api/js?key=AIzaSyAUowQX3jpTvPs9Nit0I9sDwlOlSLnstIU&sensor=false') %>
+	<%= javascript_include_tag("http://maps.googleapis.com/maps/api/js?key=AIzaSyAUowQX3jpTvPs9Nit0I9sDwlOlSLnstIU&sensor=false") %>
 <% end %>
 <%= javascript_tag do %>
 $(document).ready(function() {	
@@ -12,7 +12,8 @@ $(document).ready(function() {
 		'hideOnContentClick' : true,
 		
 	});
-	function initialize() {
+});
+$(document).ready(function() {
 	var mapOptions = {
 	    center: new google.maps.LatLng(<%= @object.location %>),
 	    zoom: 16,
@@ -26,13 +27,21 @@ $(document).ready(function() {
 	var objectOptions = {
 	    animation: google.maps.Animation.DROP,
 	    position: new google.maps.LatLng(<%= @object.location %>),
-	    title: 'Test'
 	}
 	var map = new google.maps.Map(document.getElementById("map"),mapOptions);
 	var object = new google.maps.Marker(objectOptions).setMap(map);
-} 
+	var overviewOptions = {
+  		position: object,
+  		pov: {
+    		heading: 0,
+    		pitch: 0,
+    		zoom: 1
+  		}
+	};
+	var panorama = new  google.maps.StreetViewPanorama(document.getElementById("overview"), overviewOptions);
 });
 <% end %>
+<div id="overview"></div>
 <div class="object_left">
 	<h1>
 		<%= @object.title %>
@@ -87,7 +96,7 @@ $(document).ready(function() {
 				</dd>
 			</div>
 			<% end %>
-			<% if @object.parking %>
+			<% if @object.parkingcost.present? %>
 			<div>
 				<dt class="object">
 					<%= t('objects.parking')%>
