@@ -1,12 +1,28 @@
 <% content_for :stylesheets do %>
 	<%= stylesheet_link_tag 'admin_objects' %>
 <% end %>
-<%= javascript_tag :defer => 'defer' do %>
+<%= javascript_include_tag("http://maps.googleapis.com/maps/api/js?key=AIzaSyAUowQX3jpTvPs9Nit0I9sDwlOlSLnstIU&sensor=false") %>
+<%= javascript_tag do %>
 $(document).ready(function() {
 	$('#parking_cost_field').hide();
 	$('#object_parking').click(function() {
 		$('#parking_cost_field').fadeToggle('fast');
 	});
+  var mapOptions = {
+      center: new google.maps.LatLng(55.762, 37.618),
+      zoom: 11,
+      minZoom: 9,
+      maxZoom: 16,
+      streetViewControl: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("set_map"),mapOptions);
+  var marker = new google.maps.Marker();
+  marker.setMap(map);
+  google.maps.event.addListener(map, 'click', function(event) {
+    marker.setPosition(event.latLng);
+    $("#object_location").attr('value', event.latLng.toUrlValue(7));
+  });
 });
 <% end %>
 <%= form_for [refinery, :objects_admin, @object] do |f| -%>
@@ -35,13 +51,14 @@ $(document).ready(function() {
       :f => f
     } %>
   </div>
-  
+
   <div class='field'>
     <%= f.label :address -%>
     <%= f.text_field :address, :size => 55  -%>
-
+    <div id="set_map" style="width: 700px; height: 500px;"></div>
+    <%= f.hidden_field :location -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :distance -%>
     <%= f.text_field :distance  -%>

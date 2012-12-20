@@ -3,7 +3,7 @@ module Refinery
     class Object < Refinery::Core::BaseModel
       self.table_name = 'refinery_objects'
       after_create { |record| Delayed::Job.enqueue NewObjectJob.new(Subscriber.find(:all), record) }
-      before_save { |record| record.location = Refinery::Objects::Util.provide_position(record.address) }
+      #before_save { |record| record.location = Refinery::Objects::Util.provide_position(record.address) }
 
       attr_accessible :title, :position, :address, :location, :distance, :plan, :description, :space, :plan, :floor, :parking, :parkingcost, :rentcost, :photo_id
 
