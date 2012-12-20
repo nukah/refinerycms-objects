@@ -19,6 +19,9 @@ $(document).ready(function() {
   var map = new google.maps.Map(document.getElementById("set_map"),mapOptions);
   var marker = new google.maps.Marker();
   marker.setMap(map);
+  <% if @object.location %>
+  marker.setPosition(new google.maps.LatLng(<%= @object.location %>));
+  <% end %>
   google.maps.event.addListener(map, 'click', function(event) {
     marker.setPosition(event.latLng);
     $("#object_location").attr('value', event.latLng.toUrlValue(7));
