@@ -6,7 +6,7 @@ module Refinery
         crudify :'refinery/objects/object', :xhr_paging => true
         
         def successful_create
-          Delayed::Job.enqueue NewObjectJob.new(Subscriber.find(:all), @object)
+          Delayed::Job.enqueue Refinery::Objects::NewObjectJob.new(Subscriber.find(:all), @object)
           super
         end
         
