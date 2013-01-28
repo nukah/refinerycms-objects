@@ -7,7 +7,7 @@ module Refinery
         @subscriber = subscriber
         @object = object
         
-        mail(:to => @subscriber.email, :from => "subscriber@rosarenda.rf") do |format|
+        mail(:to => @subscriber.email, :from => "subscriber@xn----8sbape2cdpdh.xn--p1ai") do |format|
           format.html { render :locals => { :object => @object, :subscriber => @subscriber } }
         end
       end
