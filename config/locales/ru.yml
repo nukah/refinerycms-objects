@@ -2,7 +2,8 @@ ru:
   yes: присутствует
   no: отсутствует
   nds_inc: '(включая НДС)'
-  enter_email: 'Введите ваш почтовый адрес'
+  enter_email: 'Почтовый адрес'
+  enter_name: 'Название организации'
   submit_email: 'Подписаться'
   objects:
       title: Название
@@ -40,6 +41,9 @@ ru:
           other: Другие
   activerecord:
     attributes:
+      subscriber:
+        name: 'Название'
+        email: 'Почтовый адрес'
       'refinery/objects/object':
         title: Название
         address: Адрес

@@ -11,6 +11,7 @@
 <%= content_for :right_block do %>
 <h2>Подпишитесь на рассылку обновлений</h2>
 	<%= form_tag('/subscribe') do -%>
+    <%= text_field_tag('name', nil, :placeholder => t('enter_name'), :size => 30) %>
 		<%= text_field_tag('email', nil, :placeholder => t('enter_email'), :size => 50) %>
 		<%= submit_tag t('submit_email') %>
 	<% end %>
