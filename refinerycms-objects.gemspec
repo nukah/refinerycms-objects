@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   # Runtime dependencies
   s.add_dependency             'refinerycms-core',    '~> 2.1.0'
   s.add_dependency             'delayed_job_active_record'
+  s.add_dependency             'acts_as_indexed'
   s.add_dependency             'daemons'
   s.add_dependency             'nokogiri'
 
