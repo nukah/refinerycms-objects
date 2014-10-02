@@ -25,7 +25,7 @@ module Refinery
       private
 
       def send_emails
-        Subscribers.all.each { |s| Refinery::Objects::NewObjectJob.perform_async(s, self) }
+        Subscribers.all.each { |s| Refinery::Objects::NewObjectJob.perform_async(s.id, self.id) }
       end
     end
   end
