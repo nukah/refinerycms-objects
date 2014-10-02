@@ -1,3 +1,4 @@
+require 'sidekiq'
 module Refinery
   module Objects
     class NewObjectJob
