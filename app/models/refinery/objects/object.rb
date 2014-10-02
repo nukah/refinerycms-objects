@@ -2,7 +2,7 @@ module Refinery
   module Objects
     class Object < Refinery::Core::BaseModel
       self.table_name = 'refinery_objects'
-      after_create { |record| Delayed::Job.enqueue NewObjectJob.new(Subscriber.find(:all), record) }
+      after_create :send_emails
       #before_save { |record| record.location = Refinery::Objects::Util.provide_position(record.address) }
 
       attr_accessible :title, :position, :address, :location, :distance, :plan, :description, :space, :plan, :floor, :parking, :parkingcost, :rentcost, :photo_id
@@ -13,15 +13,20 @@ module Refinery
       validates :rentcost, :address, :photo_id, :presence => true
 
       belongs_to :photo, :class_name => '::Refinery::Image'
-      
+
       has_many_page_images
-      
+
       public
-      
+
       def parking
         self[:parking] ? ::I18n.t('yes') : ::I18n.t('no')
       end
-      
+
+      private
+
+      def send_emails
+        Subscribers.all.each { |s| Refinery::Objects::NewObjectJob.perform_async(s, self) }
+      end
     end
   end
 end

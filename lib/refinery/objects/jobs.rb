@@ -3,8 +3,8 @@ module Refinery
   module Objects
     class NewObjectJob
       include Sidekiq::Worker
-      def perform(subscribers, object)
-        subscribers.each { |e| Refinery::Objects::ObjectMailer.new_object(e, object).deliver }
+      def perform(subscriber, object)
+        Refinery::Objects::ObjectMailer.new_object(subscriber, object).deliver
       end
     end
   end
